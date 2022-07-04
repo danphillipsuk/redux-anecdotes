@@ -3,7 +3,7 @@ import AnecdoteList from './components/AnecdoteList'
 import { addVote, createAnecdote } from './reducers/anecdoteReducer'
 
 const App = ({ store }) => {
-  const anecdotes = useSelector(state => state)
+  let anecdotes = useSelector(state => state)
   const dispatch = useDispatch()
 
   const vote = (id) => {
@@ -16,6 +16,8 @@ const App = ({ store }) => {
     event.target.anecdote.value = ''
     dispatch(createAnecdote(content))
   }
+
+  anecdotes.sort((a, b) => b.votes - a.votes)
 
   return (
     <div>
