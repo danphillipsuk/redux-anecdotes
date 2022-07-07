@@ -10,7 +10,7 @@ import anecdoteService from '../services/anecdotes'
 //   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 // ]
 
-const getId = () => (100000 * Math.random()).toFixed(0)
+// const getId = () => (100000 * Math.random()).toFixed(0)
 
 // const asObject = (anecdote) => {
 //   return {
@@ -26,9 +26,9 @@ const anecdoteSlice = createSlice({
   name: 'anecdotes',
   initialState: [],
   reducers: {
-    createAnecdote(state, action) {
-      state.push(action.payload)
-    },
+    // createAnecdote(state, action) {
+    //   state.push(action.payload)
+    // },
     addVote(state, action) {
       const id = action.payload
       const anecdoteToChange = state.find(a => a.id === id)
@@ -50,7 +50,7 @@ const anecdoteSlice = createSlice({
 })
 
 
-export const { createAnecdote, addVote, appendAnecdote, setAnecdotes } = anecdoteSlice.actions
+export const { addVote, appendAnecdote, setAnecdotes } = anecdoteSlice.actions
 
 export const initialiseAnecdotes = () => {
   return async dispatch => {
@@ -58,4 +58,12 @@ export const initialiseAnecdotes = () => {
     dispatch(setAnecdotes(anecdotes))
   }
 }
+
+export const createAnecdote = content => {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch(appendAnecdote(newAnecdote))
+  }
+}
+
 export default anecdoteSlice.reducer
