@@ -1,5 +1,3 @@
-// import { createSlice } from "@reduxjs/toolkit"
-
 const notificationReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_NOTIFICATION':
@@ -38,26 +36,3 @@ export const setNotification = (notification, seconds) => {
 }
 
 export default notificationReducer
-// let initialState = null
-
-// const notificationSlice = createSlice({
-//   name: 'notifications',
-//   initialState,
-//   reducers: {
-//     notificationChange(notification) {
-//       return {
-//         type: 'SET_NOTIFICATION',
-//         notification,
-//       }
-//     },
-//     clearNotification() {
-//       console.log('two')
-//     },
-//     setNotification(state, action) {
-
-//     }
-//   }
-// })
-
-// export const { setNotification } = notificationSlice.actions
-// export default notificationSlice.reducer
